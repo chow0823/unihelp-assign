@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['id'] = $user['account_id'];
         $_SESSION['role'] = strtolower($user['account_role']);
 
-        if($user['account_role'] === 'student'){
+        if($_SESSION['role'] === 'student'){
             header("Location: student.php");
         }
         else{
@@ -120,6 +120,11 @@ button:hover {
   box-shadow: 4px 4px 0px var(--primary);
   transform: translate(-2px, -2px);
 }
+.error_msg{
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}
 </style>
 <div class="forms">
 <h1>Login</h1>
@@ -135,10 +140,10 @@ button:hover {
   <label for="pw">Password</label><br>
   <input type="password" id="pw" name="password" required>
   </div>
+  <?php if (isset($error)) echo "<p class='error_msg'>" . htmlspecialchars($error) . "</p>"; ?><br>
   <p> <a href="forgot_pw.php">Forgot Password?</a> </p>
   <button class="button-33" role="button" type="submit">Login</button>
 </div>
-  <?php if (isset($error)) echo "<p>" . htmlspecialchars($error) . "</p>"; ?>
 </form>
 </body>
 </html>
