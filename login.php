@@ -1,6 +1,6 @@
 <?php
 session_start();
-require "unihelpdb.php";
+require "dbcon.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['id'] = $user['account_id'];
         $_SESSION['role'] = strtolower($user['account_role']);
 
-        if($user['account_role'] === 'student'){
+        if($_SESSION['role'] === 'student'){
             header("Location: student.php");
         }
         else{
