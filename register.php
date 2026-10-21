@@ -5,7 +5,8 @@ session_start();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = trim($_POST['email']);
     $role = $_POST['role'];
-    $pw = $_POST['pw'];
+    $bfpw = $_POST['pw'];
+    $pw = password_hash($bfpw, PASSWORD_DEFAULT);
     $cpw = $_POST['cpw'];
 
     $emailcheck = "SELECT account_id FROM account WHERE account_email = ?";
@@ -36,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if($rstmt1->num_rows> 0) {
       $msg = "Email is already registered.";
-      }elseif($pw !== $cpw){
+      }elseif($bfpw !== $cpw){
         $msg = "Passwords do not match.";
       }
     else {
