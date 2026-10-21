@@ -86,10 +86,10 @@ input[type=submit]:hover {
 <body>
 <ul>
   <img src="UniHELP logo.png" alt="logo">
-  <li><a href="volunteer.html">Home</a></li>
-  <li><a href="volunteerpfp.html">Profile</a></li>
+  <li><a href="volunteer.php">Home</a></li>
+  <li><a href="volunteerpfp.php">Profile</a></li>
   <li><a href="">Session History</a></li>
-  <li><a href="login.html">Logout</a></li>
+  <li><a href="login.php">Logout</a></li>
 </ul>
 
 <h1>Volunteer Profile</h1>
