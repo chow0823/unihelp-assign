@@ -1,6 +1,6 @@
 <?php
 session_start();
-require "unihelpdb.php";
+require "dbcon.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
@@ -120,15 +120,10 @@ button:hover {
   box-shadow: 4px 4px 0px var(--primary);
   transform: translate(-2px, -2px);
 }
-.error_msg{
-  color: red;
-  font-size: 14px;
-  margin-top: 5px;
-}
 </style>
 <div class="forms">
 <h1>Login</h1>
-<p>No Account? <a href="signup.php">Sign Up</a> Now!</p><br>
+<p>No Account? <a href="register.php">Sign Up</a> Now!</p><br>
  <!--Login field for registered email and password-->
  <form method="POST" action="login.php">
     <div class="input_group">
@@ -140,10 +135,10 @@ button:hover {
   <label for="pw">Password</label><br>
   <input type="password" id="pw" name="password" required>
   </div>
-  <?php if (isset($error)) echo "<p class='error_msg'>" . htmlspecialchars($error) . "</p>"; ?><br>
   <p> <a href="forgot_pw.php">Forgot Password?</a> </p>
   <button class="button-33" role="button" type="submit">Login</button>
 </div>
+  <?php if (isset($error)) echo "<p>" . htmlspecialchars($error) . "</p>"; ?>
 </form>
 </body>
 </html>
