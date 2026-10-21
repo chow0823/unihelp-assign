@@ -68,13 +68,13 @@ button:hover{
   <img src="UniHELP logo.png" alt="logo">
   <li><a href="volunteer.php">Home</a></li>
   <li><a href="volunteerpfp.php">Profile</a></li>
-  <li><a href="">Session History</a></li>
+  <li><a href="session_history.php">Session History</a></li>
   <li><a href="logout.php">Logout</a></li>
 </ul>
 
 <h1>Welcome to UniHELP</h1>    
-<button type="button" onclick="window.location.href=''">Request Details</button><br><br>
-<button type="button" onclick="window.location.href=''">Schedule Session</button>
+<button type="button" onclick="window.location.href='request_details.php'">Request Details</button><br><br>
+<button type="button" onclick="window.location.href='schedule_session.php'">Schedule Session</button>
 
 </form>
 </body>
