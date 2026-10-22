@@ -1,5 +1,5 @@
 <?php 
-require 'dbcon.php';
+require 'unihelpdb.php';
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -75,10 +75,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
-
-
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -172,40 +168,47 @@ button:hover {
   box-shadow: 4px 4px 0px var(--primary);
   transform: translate(-2px, -2px);
 }
-
-
-
-
+select{
+  width: 100%;
+  padding: 12px;
+  margin: 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  border: 2px solid var(--primary);
+}
 </style>
 <div class="forms">
 <h1>Register</h1>
  <!--Login field for registered email and password-->
+ <p>Registered an Account? <a href="login.php">Login</a> Now!</p><br>
  <form method="POST" action="register.php">
     <div class="input_group">
-  <label for="email">Email</label><br>
-  <input type="email" id="email" name="email" required><br><br>
+  <label for="email">Email</label>
+  <input type="email" id="email" name="email" required>
 </div>
 
 <div class="input_group">
-  <label for="pw">Password</label><br>
+  <label for="pw">Password</label>
   <input type="password" id="pw" name="pw" required>
   </div>
 
 <div class="input_group">
-  <label for="cpw">Confirm Password</label><br>
+  <label for="cpw">Confirm Password</label>
   <input type="password" id="cpw" name="cpw" required>
   </div>
 
 <div class="input_group">
-  <label for="role">Role</label><br>
+  <label for="role">Role</label>
   <select name="role" id="role">
   <option value="student">Student</option>
   <option value="Volunteer">Volunteer</option>
   </select>
   </div>
+  <input type="submit" value="Submit">
 </div>
   <?php if (isset($error)) echo "<p>" . htmlspecialchars($error) . "</p>"; ?>
- <input type="submit" value="Submit">
 </form>
 </body>
 </html>

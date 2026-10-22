@@ -131,7 +131,6 @@ button:hover {
 </style>
 <div class="forms">
 <h1>Forgot Password</h1>
-<?php if($message) echo "<p>" . htmlspecialchars($message) . "</p>"; ?>    
  <!--Reset password field-->
  <form method= "POST" action="forgot_pw.php">
     <div class="input_group">
@@ -147,6 +146,7 @@ button:hover {
   <div class="input_group">
   <label for="lname">New Password Confirmation</label><br>
   <input type="text" id="npw2" name="npw2" required><br><br>
+  <?php if($message) echo "<p>" . htmlspecialchars($message) . "</p>"; ?>    
 </div>
   <button type="submit">Submit</button>
 </form>

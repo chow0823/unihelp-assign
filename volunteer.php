@@ -55,11 +55,12 @@ button{
   margin: 0 auto;
   border-radius: 12px;
   padding: 32px 50px;
-  
+  color: black;
+  background-color: white;
+  border: 2px solid #333333;
 }
 button:hover{
-  background-color: lightgray;
-  color: black;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.6);
 }
 </style>
 </head>
@@ -68,13 +69,13 @@ button:hover{
   <img src="UniHELP logo.png" alt="logo">
   <li><a href="volunteer.php">Home</a></li>
   <li><a href="volunteerpfp.php">Profile</a></li>
-  <li><a href="">Session History</a></li>
+  <li><a href="session_history.php">Session History</a></li>
   <li><a href="logout.php">Logout</a></li>
 </ul>
 
 <h1>Welcome to UniHELP</h1>    
-<button type="button" onclick="window.location.href=''">Request Details</button><br><br>
-<button type="button" onclick="window.location.href=''">Schedule Session</button>
+<button type="button" onclick="window.location.href='request_details.php'">Request Details</button><br><br>
+<button type="button" onclick="window.location.href='schedule_session.php'">Schedule Session</button>
 
 </form>
 </body>
