@@ -1,6 +1,6 @@
 <?php
 session_start();
-require "dbcon.php";
+require "unihelpdb.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
