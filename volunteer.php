@@ -8,61 +8,8 @@ if(!isset($_SESSION['role']) || $_SESSION['role'] !== 'volunteer') {
 <!DOCTYPE html>
 <html>
 <head>
+  <link rel="stylesheet" href="style.css"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Volunter Homepage</title>
-<style>
-body {
-  margin: 0;
-  padding: 0;
-  background-image: url('campus.png');
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-}
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #333333;
-  display: flex;
-  align-items: center;
-  height: 70px;
-  width: 100%;
-  justify-content: right;
-}
-ul li {
-  float: right;
-}
-ul li a {
-  display: block;
-  color: white;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-ul li a:hover {
-  background-color: #111111;
-}
-img{
-  height: 190%;
-  width: 15%;
-  margin-right: auto;
-}
-h1{
-  text-align: center;
-}
-button{
-  display: block;
-  margin: 0 auto;
-  border-radius: 12px;
-  padding: 32px 50px;
-  color: black;
-  background-color: white;
-  border: 2px solid #333333;
-}
-button:hover{
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.6);
-}
-</style>
 </head>
 <body>
 <ul>
@@ -73,7 +20,8 @@ button:hover{
   <li><a href="logout.php">Logout</a></li>
 </ul>
 
-<h1>Welcome to UniHELP</h1>    
+<h1>Welcome to UniHELP</h1>
+<h2>Volunteer Dashboard</h2>    
 <button type="button" onclick="window.location.href='request_details.php'">Request Details</button><br><br>
 <button type="button" onclick="window.location.href='schedule_session.php'">Schedule Session</button>
 
