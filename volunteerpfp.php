@@ -124,21 +124,22 @@ input[type=submit]:hover {
   <div class="checkdrop">
   <label for="mode">Prefer Support Mode:</label>
   <select name="mode" id="mode">
-    <option value="phy">Physical</option>
-    <option value="onl">Online</option>
+    <option value="Physical">Physical</option>
+    <option value="Online">Online</option>
   </select>
   <br><br>
   
   <label for="time">Time Avaliable:</label>
   <select name="time" id="time">
-    <option value="morning1">9am to 10am</option>
-    <option value="morning2">10am to 11am</option>
-    <option value="morning3">11am to 12pm</option>
-    <option value="noon1">12pm to 1pm</option>
-    <option value="noon2">1pm to 2pm</option>
-    <option value="noon3">3pm to 4pm</option>
-    <option value="noon4">4pm to 5pm</option>
-    <option value="noon5">5pm to 6pm</option>
+    <option value="09:00-10:00">9am to 10am</option>
+    <option value="10:00-11:00">10am to 11am</option>
+    <option value="11:00-12:00">11am to 12pm</option>
+    <option value="12:00-13:00">12pm to 1pm</option>
+    <option value="13:00-14:00">1pm to 2pm</option>
+    <option value="14:00-15:00">2pm to 3pm</option>
+    <option value="15:00-16:00">3pm to 4pm</option>
+    <option value="16:00-17:00">4pm to 5pm</option>
+    <option value="17:00-18:00">5pm to 6pm</option>
   </select>
   <br><br>
     </div>
