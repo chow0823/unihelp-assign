@@ -15,15 +15,15 @@ if(!isset($_SESSION['role']) || $_SESSION['role'] !== 'student') {
 <ul>
   <img src="UniHELP logo.png" alt="logo">
   <li><a href="student.php">Home</a></li>
-  <li><a href="">My Request</a></li>
-  <li><a href="">Session History</a></li>
+  <li><a href="my_requests.php">My Request</a></li>
+  <li><a href="session_history.php">Session History</a></li>
   <li><a href="logout.php">Logout</a></li>
 </ul>
 
 <h1>Welcome to UniHELP</h1>    
 <h2>Student Dashboard</h2>
-<button type="button" onclick="window.location.href=''">Request Support</button><br><br>
-<button type="button" onclick="window.location.href=''">Schedule Session</button>
+<button type="button" onclick="window.location.href='request_support.php'">Request Support</button><br><br>
+<button type="button" onclick="window.location.href='schedule_session.php'">Schedule Session</button>
 
 </form>
 </body>

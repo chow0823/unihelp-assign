@@ -36,36 +36,36 @@ function generate_id(mysqli $conn, string $table, string $col, string $prefix): 
 }
 
 //Notification function to display a message and redirect to a page after a delay
-function notifcation(): void {
-    $msg = [
+function notification(): void {
+    $msgs = [
         'scheduled' => 'Session Scheduled Successfully!',
         'completed' => 'Session Mark As Completed',
         'cancelled' => 'Session Cancelled',
         'feedback' => 'Thanks for your feedback!',
     ];
-    if(isset($_GET['msg']) && isset($msg[$_GET['msg']])) echo "<p class='notif'>".escape($msg[$_GET['msg']])."</p>";
+    if(isset($_GET['msg']) && $msgs[$_GET['msg']]) echo "<p class='notif'>".escape($msgs[$_GET['msg']])."</p>";
     if (isset($_GET['error'])) echo "<p class='notif error'>".escape($_GET['error'])."</p>";
 }
 
 //Function for print the header of html and css for all use case 3 codes
 function start_page(string $title): void {
     $home = ($_SESSION['role'] === 'student') ? 'student.php' : 'volunteer.php';
+    $profile = ($_SESSION['role'] === 'student') ? 'studentpfp.php' : 'volunteerpfp.php';
     echo "
     <!DOCTYPE html>
-    <html lang="en">
+    <html>
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>" . escape($title) . "</title>
-        <link rel="stylesheet" href="session_style.css">
+        <meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'>
+        <title>" . escape($title) . "</title>   
+        <link rel='stylesheet' href='style.css'>
     </head>
     <body>
     <ul>
-    <img src="UniHELP logo.png" alt="logo">
-    <li><a href="volunteer.php">Home</a></li>
-    <li><a href="volunteerpfp.php">Profile</a></li>
-    <li><a href="session_history.php">Session History</a></li>
-    <li><a href="logout.php">Logout</a></li>
+    <img src='UniHELP logo.png' alt='logo'>
+    <li><a href='volunteer.php'>Home</a></li>
+    <li><a href='volunteerpfp.php'>Profile</a></li>
+    <li><a href='session_history.php'>Session History</a></li>
+    <li><a href='logout.php'>Logout</a></li>
     </ul><main>";
 }
 
