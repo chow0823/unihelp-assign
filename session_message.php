@@ -1,7 +1,7 @@
 <?php
 require "wspart.php";
 require_login();
-if($_SERVER['REQUEST_METHOD'] === 'POST'){
+if($_SERVER['REQUEST_METHOD'] !== 'POST'){
     header("Location: session_history.php");
     exit();
 }
@@ -12,7 +12,7 @@ $ses = $_POST['sess'] ?? '';
 $action = $_POST['action'] ?? '';
 
 function back(string $query): void {
-    header("Location: session_history.php? . $query");
+    header("Location: session_history.php?" . $query);
     exit();
 }
 
@@ -22,10 +22,10 @@ $rows = fetch_all($conn,
     JOIN support_requests r ON s.support_requests_supportreq_ID = r.supportreq_ID
     WHERE s.supportses_ID = ? AND (r.Account_account_ID = ? OR r.Volunteer_volunteer_ID = ?)", "sss", [$ses, $id, $id]);
 $row = $rows[0] ?? null;
-if($row) die("Session not found or you do not have permission to modify it.");
+if(!$row) die("Session not found or you do not have permission to modify it.");
 
 if($row['session_status'] !== 'Scheduled') 
-    back("err=".urlencode("Only scheduled sessions can be modified."));
+    back("err=" . urlencode("Only scheduled sessions can be modified."));
 
 if($action === 'complete'){
     if($role !== 'volunteer') back("err=".urlencode("Only volunteers can mark sessions as completed."));
@@ -55,8 +55,8 @@ try{
     $conn->commit();
     back("msg=$msg");
 }
-catch(Exception $e){
+catch(Throwable $e){
     $conn->rollback();
     error_log("Error updating session: " . $e->getMessage());
-    back("err=".urlencode("An error occurred while updating the session."));
+    back("err=" . urlencode("An error occurred while updating the session."));
 }

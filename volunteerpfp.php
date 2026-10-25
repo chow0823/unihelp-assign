@@ -88,7 +88,7 @@ input[type=submit]:hover {
   <img src="UniHELP logo.png" alt="logo">
   <li><a href="volunteer.php">Home</a></li>
   <li><a href="volunteerpfp.php">Profile</a></li>
-  <li><a href="">Session History</a></li>
+  <li><a href="session_history.php">Session History</a></li>
   <li><a href="logout.php">Logout</a></li>
 </ul>
 

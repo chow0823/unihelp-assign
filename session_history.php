@@ -36,7 +36,7 @@ notification();
         </tr>
         <?php foreach ($rows as $row): ?>
         <tr>
-            <td><?= escape($role === 'student' ? $row['student_email'] : $row['volunteer_email']) ?></td>
+            <td><?= escape($role === 'student' ? $row['volunteer_email'] : $row['student_email']) ?></td>
             <td><?= escape($row['category']) ?></td>
             <td><?= escape($row['request_desc']) ?></td>
             <td><?= escape($row['session_datetime'] ?? $row['preferred_datetime']) ?></td>
@@ -67,7 +67,7 @@ notification();
                 <?php if ($row['rating'] !== null): ?>
                     <?= escape($row['rating']) ?>/5<?= $row['comments'] !== '' ? '<br><span>' . escape($row['comments']) . '</span>' : '' ?>
                 <?php elseif ($role === 'student' && $row['session_status'] === 'Completed'): ?>
-                    <a href="feedback.php?sess_id=<?= urlencode($row['supportses_ID']) ?>">Provide Feedback</a>
+                    <a href="feedback.php?sess=<?= urlencode($row['supportses_ID']) ?>">Provide Feedback</a>
                     <?php else: ?>No Rating Yet<?php endif; ?>
             </td>
         </tr>

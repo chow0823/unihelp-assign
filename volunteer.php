@@ -8,7 +8,7 @@ if(!isset($_SESSION['role']) || $_SESSION['role'] !== 'volunteer') {
 <!DOCTYPE html>
 <html>
 <head>
-  <link rel="stylesheet" href="style.css"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="dashboard_style.css"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Volunter Homepage</title>
 </head>
 <body>
@@ -23,7 +23,7 @@ if(!isset($_SESSION['role']) || $_SESSION['role'] !== 'volunteer') {
 <h1>Welcome to UniHELP</h1>
 <h2>Volunteer Dashboard</h2>    
 <button type="button" onclick="window.location.href='request_details.php'">Request Details</button><br><br>
-<button type="button" onclick="window.location.href='schedule_session.php'">Schedule Session</button>
+<button type="button" onclick="window.location.href='session_history.php'">Schedule Session</button>
 
 </form>
 </body>

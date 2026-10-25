@@ -22,11 +22,11 @@ if (!$req){
 
 $vid = $req['Volunteer_volunteer_ID'];
 $skills = array_column(fetch_all($conn, 
-      "SELECT sk.skill_name FROM possesses p 
-      JOIN skills sk ON p.Skills_skill_ID = sk.skill_ID
-      WHERE p.Volunteer_volunteer_ID = ?", "s", [$vid]), 'skill_name');
+      "SELECT rs.skill_name FROM possesses p 
+      JOIN skills rs ON p.Skills_skill_ID = rs.skill_ID
+      WHERE p.Volunteer_account_ID = ?", "s", [$vid]), 'skill_name');
 $slots = fetch_all($conn, 
-      "SELECT t.vailability_ID, t.availability_day, t.start_time, t.end_time 
+      "SELECT t.availability_ID, t.availability_day, t.start_time, t.end_time 
       FROM availability a 
       JOIN `available times` t ON t.availability_ID = a.Availability_availability_ID
       WHERE a.Volunteer_account_ID = ?
@@ -49,7 +49,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && $req['supportreq_status'] === 'Accep
   if(!$slot) $error = "Please select a valid volunteer's available time slot.";
   elseif(!$d || $d->format('Y-m-d') !== $date) $error = "Please select a valid date.";
   elseif($date < date('Y-m-d')) $error = "The date cannot be in the past.";
-  elseif($d->format('l') !== $slot['availability_day']) $error = "The slot only available on " . $slot['availability_day'] . ".";
+  elseif($d->format('l') !== $slot['availability_day']) $error = "The slot only available on  {$slot['availability_day']} . Please select a slot that matches the {$slot['availability_day']}.";
   elseif(!in_array($mode, ['Physical', 'Online'])) $error = "Please select a valid session mode.";
   else{
     $dt = $date . ' ' . $slot['start_time'];
@@ -79,7 +79,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && $req['supportreq_status'] === 'Accep
           header("Location: session_history.php?msg=scheduled");
           exit();
         }
-        catch(Exception $e){
+        catch(Throwable $e){
           $conn->rollback();
           error_log("Error scheduling session: " . $e->getMessage());
           $error = "An error occurred while scheduling the session. Please try again.";
@@ -88,10 +88,9 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && $req['supportreq_status'] === 'Accep
   }
 }
 
-page_start("Schedule Session");
+start_page("Schedule Session");
 ?>
 <h1>Schedule Session</h1>
-<?php if($error) echo "<p class='notif error'>".escape($error)."</p>"; ?>
 
 <p>Volunteer Email: <?= escape($req['volunteer_email']) ?></p>
 <p>Volunteer Skills: <?= escape($skills ? implode(', ', $skills) : 'Not specified') ?></p>
@@ -101,18 +100,19 @@ page_start("Schedule Session");
 <p>Support Category: <?= escape($req['category'] ?? 'Not specified') ?></p>
 <p>Skill Required: <?= escape($req['required_skill'] ?? 'Not specified') ?></p>
 <p>Assistance Required: <?= escape($req['request_desc'] ?? 'Not specified') ?></p>
-<p>Student Preferred Date &amp; Time: <?= escape(format_datetime($req['preferred_datetime'] )) ?> (<?= escape($req['preferred_support_mode']) ?>)</p>
+<p>Student Preferred Date &amp; Time: <?= escape(format_date($req['preferred_datetime'] )) ?> (<?= escape($req['preferred_supportmode']) ?>)</p>
 
 <?php if($req['supportreq_status'] !== 'Accepted'): ?>
   <p class="notif error">This request is "<?= escape($req['supportreq_status']) ?>". You cannot schedule a session for it.</p>
   <a href="session_history.php">Back</a>
 <?php elseif (!$slots): ?>
-  <p class="notif error">The volunteer has no set any available slots. You cannot schedule a session for this request.</p>
+  <p class="notif error">The volunteer has not set any available slots. You cannot schedule a session for this request.</p>
   <a href="session_history.php">Back</a>
 <?php else: ?>
   <h2>Choose Session Details</h2>
+  <?php if($error) echo "<p class='notif error'>".escape($error)."</p>"; ?>
   <form method="POST" action="schedule_session.php">
-    <input type ="hidden" name="req" value="<?= escape($reqID) ?>">
+    <input type ="hidden" name="req_id" value="<?= escape($req['supportreq_ID']) ?>">
 
     <label for="session_date">Time slot:</label>
     <select id="slot" name="slot" required>
@@ -128,7 +128,7 @@ page_start("Schedule Session");
     <label for="mode">Session Mode:</label>
     <select id="mode" name="mode">
       <?php foreach(['Physical', 'Online'] as $m): ?>
-        <option value="<?=$m ?>" <?= $m === $req['preferred_support_mode'] ? 'selected' : '' ?>><?=$m ?></option>
+        <option value="<?=$m ?>" <?= $m === $req['preferred_supportmode'] ? 'selected' : '' ?>><?=$m ?></option>
       <?php endforeach; ?>
     </select><br><br>
 
@@ -136,4 +136,4 @@ page_start("Schedule Session");
     <a href="session_history.php">Back</a>
   </form>
 <?php endif; ?>
-<?php page_end(); ?>
+<?php end_page(); ?>

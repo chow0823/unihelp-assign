@@ -49,8 +49,16 @@ function notification(): void {
 
 //Function for print the header of html and css for all use case 3 codes
 function start_page(string $title): void {
-    $home = ($_SESSION['role'] === 'student') ? 'student.php' : 'volunteer.php';
-    $profile = ($_SESSION['role'] === 'student') ? 'studentpfp.php' : 'volunteerpfp.php';
+    $home= ($_SESSION['role'] === 'student') ? 'student.php' : 'volunteer.php';
+    if($_SESSION['role'] === 'student'){
+        $home = 'student.php';
+        $link = 'my_request.php';
+        $label = 'My Request';
+    } else{
+        $home = 'volunteer.php';
+        $link = 'volunteerpfp.php';
+        $label = 'Profile';
+    }
     echo "
     <!DOCTYPE html>
     <html>
@@ -62,8 +70,8 @@ function start_page(string $title): void {
     <body>
     <ul>
     <img src='UniHELP logo.png' alt='logo'>
-    <li><a href='volunteer.php'>Home</a></li>
-    <li><a href='volunteerpfp.php'>Profile</a></li>
+    <li><a href='$home'>Home</a></li>
+    <li><a href='$link'>$label</a></li>
     <li><a href='session_history.php'>Session History</a></li>
     <li><a href='logout.php'>Logout</a></li>
     </ul><main>";
