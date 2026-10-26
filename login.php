@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <input type="password" id="pw" name="password" required>
   </div>
   <?php if (isset($error)) echo "<p class='error_msg'>" . htmlspecialchars($error) . "</p>"; ?><br>
-  <p> <a href="forgot_pw.php">Forgot Password?</a> </p>
+  <p> <a href="forgot_pw.php">Forgot Password?</a> </p><br>
   <button class="button-33" role="button" type="submit">Login</button>
 </div>
 </form>
