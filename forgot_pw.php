@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
   <div class="input_group">
   <label for="lname">New Password Confirmation</label><br>
   <input type="password" id="npw2" name="npw2" required><br><br>
-  <?php if($message) echo "<p>" . htmlspecialchars($message) . "</p>"; ?>    
+  <?php if($message) echo "<p class='error_msg'>" . htmlspecialchars($message) . "</p>"; ?>    
 </div>
   <button type="submit">Submit</button>
 </form>
