@@ -43,20 +43,20 @@ notification();
             <td><?= escape($row['required_skill'] ?? '-') ?></td>
             <td>
                 <?php if($row['supportses_ID'] === null && $row['supportreq_status'] === 'Accepted'):  ?>
-                    <a href="schedule_session.php?req_id=<?= urlencode($row['supportreq_ID']) ?>">Schedule</a>
+                    <a class="schedule-link" href="schedule_session.php?req_id=<?= urlencode($row['supportreq_ID']) ?>">Schedule</a>
                 
                 <?php elseif ($row['session_status'] === 'Scheduled'): ?>
                     <?php if ($role === 'volunteer'): ?>
                         <form method="POST" action="session_message.php">
                             <input type="hidden" name="sess" value="<?= escape($row['supportses_ID']) ?>">
-                            <button name="action" value="complete">Mark as Completed</button>
+                            <button class="mark-btn" name="action" value="complete">Mark as Completed</button>
                         </form>
                     <?php else: ?>
                         <span>Scheduled</span>
                     <?php endif; ?>
                     <form method="POST" action="session_message.php">
                             <input type="hidden" name="sess" value="<?= escape($row['supportses_ID']) ?>">
-                            <button name="action" value="cancel" onclick="return confirm('Are you sure you want to cancel this session?');">Cancel Session</button>
+                            <button class="cancel-btn" name="action" value="cancel" onclick="return confirm('Are you sure you want to cancel this session?');">Cancel Session</button>
                     </form>
 
                 <?php else: $st = $row['session_status'] ?? $row['supportreq_status']; ?>

@@ -46,9 +46,10 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && !$blocked){
 start_page("Feedback");
 ?>
 <h1>Session Feedback</h1>
-<p>Volunteer: <?= escape($s['volunteer_email']) ?></p>
-<p>Session: <?= escape(format_date($s['session_datetime']))?></p>
-
+<div class="details-container">
+<p><b>Volunteer Email: </b> <?= escape($s['volunteer_email']) ?></p>
+<p><b>Session Date & Time: </b><?= escape(format_date($s['session_datetime']))?></p>
+</div>
 <?php if($blocked): ?>
     <p><?= escape($blocked) ?></p>
     <a href="session_history.php">Back</a>
@@ -59,18 +60,19 @@ start_page("Feedback");
 
     <label for="rating">Rating</label>
     <select id= "rating" name="rating" required>
+        <option value="" hidden>Session Rating 1 to 5</option >
         <option value="5">5 - Excellent</option >
         <option value="4">4 - Great</option >
         <option value="3">3 - Moderate</option >
         <option value="2">2 - Poor</option >
         <option value="1">1 - Very Poor</option >
-    </select>
+    </select><br>
 
-    <label for="comments">Any additional comments to your session? (Optional)</label>
-    <textarea id="comments" name="comments" maxlength="255"></textarea>
+    <label for="comments">Any additional comments to your session? (Optional)</label><br>
+    <textarea id="comments" name="comments" rows="10" maxlength="255"></textarea><br><br>
 
-    <button type="submit">Submit</button>
-    <a href="session_history.php">Back</a>
+    <button type="submit">Submit</button><br>
+    <a class="back-btn" href="session_history.php">Back</a>
 </form>
 <?php endif; ?>
 <?php end_page(); ?>

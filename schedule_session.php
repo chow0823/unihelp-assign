@@ -91,7 +91,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && $req['supportreq_status'] === 'Accep
 start_page("Schedule Session");
 ?>
 <h1>Schedule Session</h1>
-
+<div class="details-container">
 <p>Volunteer Email: <?= escape($req['volunteer_email']) ?></p>
 <p>Volunteer Skills: <?= escape($skills ? implode(', ', $skills) : 'Not specified') ?></p>
 <p>Volunteer Available Slots:
@@ -101,7 +101,7 @@ start_page("Schedule Session");
 <p>Skill Required: <?= escape($req['required_skill'] ?? 'Not specified') ?></p>
 <p>Assistance Required: <?= escape($req['request_desc'] ?? 'Not specified') ?></p>
 <p>Student Preferred Date &amp; Time: <?= escape(format_date($req['preferred_datetime'] )) ?> (<?= escape($req['preferred_supportmode']) ?>)</p>
-
+</div>
 <?php if($req['supportreq_status'] !== 'Accepted'): ?>
   <p class="notif error">This request is "<?= escape($req['supportreq_status']) ?>". You cannot schedule a session for it.</p>
   <a href="session_history.php">Back</a>
@@ -109,11 +109,10 @@ start_page("Schedule Session");
   <p class="notif error">The volunteer has not set any available slots. You cannot schedule a session for this request.</p>
   <a href="session_history.php">Back</a>
 <?php else: ?>
-  <h2>Choose Session Details</h2>
-  <?php if($error) echo "<p class='notif error'>".escape($error)."</p>"; ?>
   <form method="POST" action="schedule_session.php">
+    <h2>Choose Session Details</h2>
     <input type ="hidden" name="req_id" value="<?= escape($req['supportreq_ID']) ?>">
-
+     <?php if($error) echo "<p class='notif error'>".escape($error)."</p>"; ?>
     <label for="session_date">Time slot:</label>
     <select id="slot" name="slot" required>
       <?php foreach($slots as $s): ?>
@@ -133,7 +132,7 @@ start_page("Schedule Session");
     </select><br><br>
 
     <button type="submit">Schedule Session</button>
-    <a href="session_history.php">Back</a>
+    <a class="back-btn" href="session_history.php">Back</a>
   </form>
 <?php endif; ?>
 <?php end_page(); ?>
