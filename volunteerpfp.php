@@ -3,6 +3,9 @@
 <head>
 <title>Volunter Profile</title>
 <style>
+body{
+   background-image: url('campus.png');
+}
 form {
   border-radius: 5px;
   background-color: #f2f2f2;
