@@ -85,7 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <div class="forms">
 <h1>Register</h1>
  <!--Login field for registered email and password-->
- <p>Registered an Account? <a href="login.php">Login</a> Now!</p><br>
+ <p>Already have an account? <a href="login.php">Login</a></p><br>
  <form method="POST" action="register.php">
     <div class="input_group">
   <label for="email">Email</label>
