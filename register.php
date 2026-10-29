@@ -109,7 +109,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <option value="Volunteer">Volunteer</option>
   </select>
   </div>
-  <input type="submit" value="Submit">
+  <button type="submit">Submit</button>
 </div>
   <?php if (isset($error)) echo "<p>" . htmlspecialchars($error) . "</p>"; ?>
 </form>
