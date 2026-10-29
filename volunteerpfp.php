@@ -4,6 +4,11 @@
 <title>Volunter Profile</title>
 <style>
 body{
+  margin: 0;
+  padding: 0;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
    background-image: url('campus.png');
 }
 form {
