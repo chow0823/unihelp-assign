@@ -19,9 +19,8 @@ if(!isset($_SESSION['role']) || $_SESSION['role'] !== 'student') {
   <li><a href="session_history.php">Session History</a></li>
   <li><a href="logout.php">Logout</a></li>
 </ul>
-
-<h1>Welcome to UniHELP</h1>    
-<h2>Student Dashboard</h2>
+  
+<h1>Student Dashboard</h1><br>
 <button type="button" onclick="window.location.href='request_support.php'">Request Support</button><br><br>
 <button type="button" onclick="window.location.href='session_history.php'">Schedule Session</button>
 

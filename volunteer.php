@@ -20,8 +20,7 @@ if(!isset($_SESSION['role']) || $_SESSION['role'] !== 'volunteer') {
   <li><a href="logout.php">Logout</a></li>
 </ul>
 
-<h1>Welcome to UniHELP</h1>
-<h2>Volunteer Dashboard</h2>    
+<h1>Volunteer Dashboard</h1><br>    
 <button type="button" onclick="window.location.href='request_details.php'">Request Details</button><br><br>
 <button type="button" onclick="window.location.href='session_history.php'">Schedule Session</button>
 
