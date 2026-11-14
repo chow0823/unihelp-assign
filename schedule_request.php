@@ -2,7 +2,8 @@
 require "wspart.php";
 require_login();
 
-
+$supcat = "SELECT skill_ID, skill_name FROM skills ORDER BY skill_name ASC";
+$resupcat = $conn->query($supcat);
 
 
 ?>
@@ -10,47 +11,79 @@ require_login();
 
 <h1>Schedule Request</h1>
 <div class="details-container">
-<p>Volunteer Email: <?= escape($req['volunteer_email']) ?></p>
-<p>Volunteer Skills: <?= escape($skills ? implode(', ', $skills) : 'Not specified') ?></p>
-<p>Volunteer Available Slots:
-  <?= $slots ? escape(implode('; ', array_map(fn($s) => $s['availability_day'] . ' ' . substr($s['start_time'], 0, 5) . '-' . substr($s['end_time'], 0, 5), $slots))) : 'No available slots' ?></p>
-<p>Student Email: <?= escape($req['student_email']) ?></p>
-<p>Support Category: <?= escape($req['category'] ?? 'Not specified') ?></p>
-<p>Skill Required: <?= escape($req['required_skill'] ?? 'Not specified') ?></p>
-<p>Assistance Required: <?= escape($req['request_desc'] ?? 'Not specified') ?></p>
-<p>Student Preferred Date &amp; Time: <?= escape(format_date($req['preferred_datetime'] )) ?> (<?= escape($req['preferred_supportmode']) ?>)</p>
 </div>
-<?php if($req['supportreq_status'] !== 'Accepted'): ?>
-  <p class="notif error">This request is "<?= escape($req['supportreq_status']) ?>". You cannot schedule a session for it.</p>
-  <a href="session_history.php">Back</a>
-<?php elseif (!$slots): ?>
-  <p class="notif error">The volunteer has not set any available slots. You cannot schedule a session for this request.</p>
-  <a href="session_history.php">Back</a>
-<?php else: ?>
-  <form method="POST" action="schedule_session.php">
-    <h2>Choose Session Details</h2>
-    <input type ="hidden" name="req_id" value="<?= escape($req['supportreq_ID']) ?>">
-     <?php if($error) echo "<p class='notif error'>".escape($error)."</p>"; ?>
-    <label for="session_date">Time slot:</label>
-    <select id="slot" name="slot" required>
-      <?php foreach($slots as $s): ?>
-        <option value="<?= escape($s['availability_ID']) ?>">
-          <?= escape($s['availability_day'] . ', ' . substr($s['start_time'], 0, 5) . ' to ' . substr($s['end_time'], 0, 5)) ?></option>
-      <?php endforeach; ?>
-    </select><br><br>
 
-    <label for="session_date">Date (must follow slot's day):</label>
-    <input type="date" id="date" name="session_date"  min="<?= date('Y-m-d') ?>" required><br><br>
+<form action="schedule_request.php" method="POST">
+  <div id="p1">
+    <label for="support_category">Support Category:</label>
+    
+    <select name="support_category" id="support_category" required>
+        <option value="">-- Select a Part --</option>
+        <?php if ($resupcat && $resupcat->num_rows > 0): ?>
+          <?php while ($rowsupcat = $resupcat->fetch_assoc()): ?>
+            <option value="<?= $rowsupcat['skill_ID'] ?>">
+                <?= htmlspecialchars($rowsupcat['skill_name']) ?>
+            </option>
+          <?php endwhile; ?>
+        <?php endif;?>
+    </select>
 
-    <label for="mode">Session Mode:</label>
-    <select id="mode" name="mode">
-      <?php foreach(['Physical', 'Online'] as $m): ?>
-        <option value="<?=$m ?>" <?= $m === $req['preferred_supportmode'] ? 'selected' : '' ?>><?=$m ?></option>
-      <?php endforeach; ?>
-    </select><br><br>
+    <label for="support_mode">Prefer Support Mode:</label>
+    <select name="support_mode" id="support_mode" required>
+      <option value="">-- Select a Part --</option>
+            <option value="Physical">
+                Physical
+            </option>
+            <option value="Online">
+                Online
+            </option>
+    </select>
 
-    <button type="submit">Schedule Session</button>
-    <a class="back-btn" href="session_history.php">Back</a>
-  </form>
-<?php endif; ?>
-<?php end_page(); ?>
+     <label for="issue_desc">Assistance Required:</label><br>
+    <textarea name="issue_description" id="issue_desc" rows="5" cols="40" required></textarea>
+    <br><br>
+
+    <label for="datetime">Date & Time:</label><br>
+    <input type="datetime-local" name="datetime" id="datetime" required>
+    <br><br>
+     <button type="button" id="nextBtn">Next</button>
+  </div>
+
+  <div id="p2">
+  
+
+  </div>  
+
+
+
+
+<button type="submit"> 
+
+<script>
+function filterVolunteers() {
+
+    // Retrieve selected filter values
+    const day = document.getElementById("day").value;
+    const time = document.getElementById("time").value;
+    const skill = document.getElementById("skill").value;
+    const mode = document.getElementById("mode").value;
+ const filtered = volunteers.filter(v => {
+
+        return (
+            (!day || v.availability_day === day) &&
+
+            (!time || (
+                v.start_time <= time &&
+                v.end_time >= time
+            )) &&
+
+            (!skill || v.skill_name === skill) &&
+
+            (!mode || v.volunteer_supportmode === mode)
+        );
+
+    });
+
+    displayVolunteers(filtered);
+}   
+</script> 
