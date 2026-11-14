@@ -67,13 +67,13 @@ button:hover{
 <ul>
   <img src="UniHELP logo.png" alt="logo">
   <li><a href="student.php">Home</a></li>
-  <li><a href="">My Request</a></li>
+  <li><a href="view_request.php">My Request</a></li>
   <li><a href="">Session History</a></li>
   <li><a href="logout.php">Logout</a></li>
 </ul>
 
 <h1>Welcome to UniHELP</h1>    
-<button type="button" onclick="window.location.href=''">Request Support</button><br><br>
+<button type="button" onclick="window.location.href='schedule_request.php'">Request Support</button><br><br>
 <button type="button" onclick="window.location.href=''">Schedule Session</button>
 
 </form>
