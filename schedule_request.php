@@ -84,11 +84,55 @@ $resvol = $conn->query($vol);
 $minDateTime = date('Y-m-d\TH:i', strtotime('+1 day'));
 ?>
 <style>
-  body {
-      font-family: Arial, sans-serif;
-      max-width: 1000px;
-      margin: 20px auto;
-      padding: 0 15px;
+body {
+  margin: 0;
+  padding: 0;
+  background-image: url('campus.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333333;
+  display: flex;
+  align-items: center;
+  height: 70px;
+  width: 100%;
+  justify-content: right;
+}
+ul li {
+  float: right;
+}
+ul li a {
+  display: block;
+  color: white;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+ul li a:hover {
+  background-color: #111111;
+}
+img{
+  height: 190%;
+  width: 15%;
+  margin-right: auto;
+}
+h1{
+  text-align: center;
+}
+  
+  form {
+       max-width: 1000px;
+  margin: 20px auto;
+  padding: 25px 30px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 2px solid #000;
+  border-radius: 10px;
+  box-sizing: border-box;
   }
 
   #p1 label {
@@ -170,13 +214,26 @@ $minDateTime = date('Y-m-d\TH:i', strtotime('+1 day'));
   .data-row:hover .grid-cells {
       background-color: #f9f9f9;
   }
-
+ ul li {
+  float: right;
+}
+ul li a {
+  display: block;
+  color: white;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+ul li a:hover {
+  background-color: #111111;
+}
+ 
   .btn-group {
       display: flex;
       justify-content: center;
       gap: 15px;
       margin-top: 25px;
   }
+  
   button {
     padding: 10px 30px;
     font-size: 16px;
@@ -190,8 +247,15 @@ $minDateTime = date('Y-m-d\TH:i', strtotime('+1 day'));
       color: #fff;
   }
 </style>
-
-
+<div class="top">
+  <ul>
+  <img src="UniHELP logo.png" alt="logo">
+  <li><a href="student.php">Home</a></li>
+  <li><a href="">My Request</a></li>
+  <li><a href="">Session History</a></li>
+  <li><a href="logout.php">Logout</a></li>
+  </ul>
+</div>
 
 <h1>Schedule Request</h1>
 <div class="details-container"></div>
