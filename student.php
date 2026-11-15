@@ -1,13 +1,9 @@
 <?php 
-require "wspart.php";
-require_login();
-
+session_start();
 if(!isset($_SESSION['role']) || $_SESSION['role'] !== 'student') {
     header("Location: login.php");
     exit;
 }
-
-start_page("Student Page");
 ?>
 <!DOCTYPE html>
 <html>
@@ -25,9 +21,8 @@ start_page("Student Page");
 </ul>
   
 <h1>Student Dashboard</h1><br>
-<button type="button" onclick="window.location.href='student_reqtoses.php'">Request Support</button><br><br>
+<button type="button" onclick="window.location.href='schedule_request.php'">Request Support</button><br><br>
 <button type="button" onclick="window.location.href='session_history.php'">Schedule Session</button>
 
-</form>
 </body>
 </html>

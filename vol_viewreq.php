@@ -120,6 +120,7 @@ start_page("Incoming Support Requests");
   th {
     background-color: #f4f4f4;
     font-weight: bold;
+    color: #000;
   }
 
   tr:hover td {
