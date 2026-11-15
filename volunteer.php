@@ -73,8 +73,8 @@ button:hover{
 </ul>
 
 <h1>Welcome to UniHELP</h1>    
-<button type="button" onclick="window.location.href=''">Request Details</button><br><br>
-<button type="button" onclick="window.location.href=''">Schedule Session</button>
+<button type="button" onclick="window.location.href='vol_viewreq.php'">Request Details</button><br><br>
+<button type="button" onclick="window.location.href='session_history.php'">Schedule Session</button>
 
 </form>
 </body>
