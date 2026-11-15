@@ -1,9 +1,13 @@
 <?php 
-session_start();
+require "wspart.php";
+require_login();
+
 if(!isset($_SESSION['role']) || $_SESSION['role'] !== 'student') {
     header("Location: login.php");
     exit;
 }
+
+start_page("Student Page");
 ?>
 <!DOCTYPE html>
 <html>
@@ -64,13 +68,7 @@ button:hover{
 </style>
 </head>
 <body>
-<ul>
-  <img src="UniHELP logo.png" alt="logo">
-  <li><a href="student.php">Home</a></li>
-  <li><a href="view_request.php">My Request</a></li>
-  <li><a href="">Session History</a></li>
-  <li><a href="logout.php">Logout</a></li>
-</ul>
+
 
 <h1>Welcome to UniHELP</h1>    
 <button type="button" onclick="window.location.href='schedule_request.php'">Request Support</button><br><br>

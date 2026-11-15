@@ -47,7 +47,7 @@ start_page("My Support Requests");
     background-attachment: fixed;
     background-size: cover;
   }
-
+ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
