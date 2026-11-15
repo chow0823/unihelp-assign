@@ -52,7 +52,7 @@ function start_page(string $title): void {
     $home= ($_SESSION['role'] === 'student') ? 'student.php' : 'volunteer.php';
     if($_SESSION['role'] === 'student'){
         $home = 'student.php';
-        $link = 'my_request.php';
+        $link = 'stu_viewreq.php';
         $label = 'My Request';
     } else{
         $home = 'volunteer.php';

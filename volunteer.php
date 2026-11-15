@@ -21,7 +21,7 @@ if(!isset($_SESSION['role']) || $_SESSION['role'] !== 'volunteer') {
 </ul>
 
 <h1>Volunteer Dashboard</h1><br>    
-<button type="button" onclick="window.location.href='request_details.php'">Request Details</button><br><br>
+<button type="button" onclick="window.location.href='vol_viewreq.php'">Request Details</button><br><br>
 <button type="button" onclick="window.location.href='session_history.php'">Schedule Session</button>
 
 </form>
