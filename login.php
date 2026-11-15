@@ -123,8 +123,7 @@ button:hover {
 </style>
 <div class="forms">
 <h1>Login</h1>
-<p>No Account? <a href="signup.php">Sign Up</a> Now!</p><br>
- <!--Login field for registered email and password-->
+<p>No Account? <a href="register.php">Sign Up</a> Now!</p><br>
  <form method="POST" action="login.php">
     <div class="input_group">
   <label for="email">Email</label><br>
