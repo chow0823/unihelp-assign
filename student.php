@@ -1,13 +1,9 @@
 <?php 
-require "wspart.php";
-require_login();
-
+session_start();
 if(!isset($_SESSION['role']) || $_SESSION['role'] !== 'student') {
     header("Location: login.php");
     exit;
 }
-
-start_page("Student Page");
 ?>
 <!DOCTYPE html>
 <html>
