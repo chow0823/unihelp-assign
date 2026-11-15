@@ -7,7 +7,7 @@ if(!isset($_SESSION['role']) || $_SESSION['role'] !== 'volunteer') {
     exit;
 }
 
-$id = $_SESSION['account_id'];
+$id = $_SESSION['id'];
 $skill = $_POST['skills'] ?? [];
 $day = $_POST['days'] ?? [];
 $mode = $_POST['mode'];
@@ -50,7 +50,7 @@ try{
   $stmt->execute();
 
   $ins = $conn->prepare(
-    "INSERT IGNORE INTO `available times` (availabilty_ID, availability_day, start_time, end_time) VALUES (?, ?, ?, ?)"
+    "INSERT IGNORE INTO `available times` (availability_ID, availability_day, start_time, end_time) VALUES (?, ?, ?, ?)"
   );
   $link = $conn->prepare(
     "INSERT INTO availability (Volunteer_account_ID, Availability_availability_ID) VALUES (?, ?)"
@@ -64,9 +64,9 @@ try{
   }
 
   $conn->commit();
-  header(Location: volunteer.php?updated=1);
+  header("Location: volunteer.php?updated=1");
   exit;
 } catch(Throwable $e){
   $conn->rollback();
-  die("Update failed");
+  die("Update failed" . $e ->getMessage());
 }

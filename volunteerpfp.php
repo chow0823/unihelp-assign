@@ -3,6 +3,34 @@
 <head>
 <title>Volunter Profile</title>
 <style>
+form {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+  width: 100%;
+  max-width: 560px;
+  margin: 30px auto;          
+  border: 1px solid var(--primary);
+  padding: 40px 30px;
+  box-shadow: var(--shadow);
+}
+.columns{
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+.checkdrop{
+  flex: 1;
+}
+select{
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
 body {
   margin: 0;
   padding: 0;
@@ -39,30 +67,36 @@ img{
 h1{
   text-align: center;
 }
-button{
-  display: block;
-  margin: 0 auto;
-  border-radius: 12px;
-  padding: 32px 50px;
-  
+input[type=submit] {
+  width: 100%;
+  background-color: green;
+  color: white;
+  padding: 14px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
-button:hover{
-  background-color: lightgray;
-  color: black;
+
+input[type=submit]:hover {
+  background-color:  #45a049;
 }
 </style>
 </head>
 <body>
 <ul>
   <img src="UniHELP logo.png" alt="logo">
-  <li><a href="volunteer.html">Home</a></li>
-  <li><a href="volunteerpfp.html">Profile</a></li>
+  <li><a href="volunteer.php">Home</a></li>
+  <li><a href="volunteerpfp.php">Profile</a></li>
   <li><a href="">Session History</a></li>
-  <li><a href="login.html">Logout</a></li>
+  <li><a href="login.php">Logout</a></li>
 </ul>
 
 <h1>Volunteer Profile</h1>
-<form method="POST" action="update_pfp.php">    
+<form method="POST" action="update_pfp.php">
+<div class="columns">
+  <div class="checkdrop">
+  <label for="skill">Select your skills:</label><br>
  <input type="checkbox" id="skill1" name="skills[]" value="SK01">
   <label for="skill1"> IT Support</label><br>
   <input type="checkbox" id="skill2" name="skills[]" value="SK02">
@@ -70,6 +104,7 @@ button:hover{
   <input type="checkbox" id="skill3" name="skills[]" value="SK03">
   <label for="skill3"> Mathematics</label><br><br>
 
+  <label for="day">Day Available:</label><br>
   <input type="checkbox" id="mon" name=days[] value="Monday">
   <label for="mon"> Monday</label><br>
   <input type="checkbox" id="tuesday" name=days[] value="Tuesday">
@@ -84,7 +119,9 @@ button:hover{
   <label for="sat">Saturday</label><br>
   <input type="checkbox" id="sun" name=days[] value="Sunday">
   <label for="sun">Sunday</label><br><br>
+  </div>
 
+  <div class="checkdrop">
   <label for="mode">Prefer Support Mode:</label>
   <select name="mode" id="mode">
     <option value="phy">Physical</option>
@@ -104,6 +141,8 @@ button:hover{
     <option value="noon5">5pm to 6pm</option>
   </select>
   <br><br>
+    </div>
+</div>
   <input type="submit" value="Update">
 
 </form>
